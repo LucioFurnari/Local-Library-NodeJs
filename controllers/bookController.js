@@ -4,6 +4,7 @@ const Genre = require('../models/genre');
 const BookInstance = require('../models/bookinstance');
 
 const asyncHandler = require("express-async-handler");
+const { body, validationResult } = require('express-validator');
 
 exports.index = asyncHandler(async (req, res, next) => {
   // Get details of books, book instances, authors and genre counts (in parallel)
@@ -65,7 +66,17 @@ exports.book_detail = asyncHandler(async (req, res, next) => {
 
 // Display book create form on GET.
 exports.book_create_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Book create GET");
+  // Get all authors and genres, witch we can use for adding to our book.
+  const [allAuthors, allGenres] = await Promise.all([
+    Author.find().exec(),
+    Genre.find().exec(),
+  ]);
+
+  res.render('book_form', {
+    title: 'Create Book',
+    authors: allAuthors,
+    genres: allGenres,
+  })
 });
 
 // Handle book create on POST.
