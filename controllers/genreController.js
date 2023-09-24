@@ -82,41 +82,10 @@ exports.genre_create_post = [
 
 // Display Genre delete form on GET.
 exports.genre_delete_get = asyncHandler(async (req, res, next) => {
-  // Get book, authors and genres for form.
-  const [book, allAuthors, allGenres] = await Promise.all([
-    Book.findById(req.params.id).populate('author').populate('genres').exec(),
-    Authors.find().exec(),
-    Genre.find().exec(),
-  ]);
-
-  if (book === null) {
-    // No results.
-    const err = new Error('Book not found');
-    err.status = 404;
-    return next(err);
-  }
-
-  // Mark our selected genres as checked.
-  for (const genre of allGenres) {
-    for (const book_g of book.genre) {
-      if (genre._id.toString() === book_g._id.toString()) {
-        genre.checked = 'true';
-      }
-    }
-  }
-
-  res.render('book_form', {
-    title: 'Update Book',
-    authors: allAuthors,
-    genres: allGenres,
-    book: book,
-  });
 });
 
 // Handle Genre delete on POST.
-exports.genre_delete_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Genre delete POST");
-});
+exports.genre_delete_post = [];
 
 // Display Genre update form on GET.
 exports.genre_update_get = asyncHandler(async (req, res, next) => {
