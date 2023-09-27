@@ -10,7 +10,7 @@ block content
 
   p #[strong Status:]
     if bookinstance.status=='Available'
-      span.text-sucess #{bookinstance.status}
+      span.text-success #{bookinstance.status}
     else if bookinstance=='Maintenance'
       span.text-danger #{bookinstance.status}
     else 
