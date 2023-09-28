@@ -7,18 +7,24 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog'); // Import routes for "catalog" area of site.
+const compression = require('compression');
 
 const app = express();
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
-const mongoDb = 'mongodb+srv://harrow99:archwave99@cluster0.nrwzudw.mongodb.net/local_library?retryWrites=true&w=majority';
+const dev_db_url = 'mongodb+srv://harrow99:archwave99@cluster0.nrwzudw.mongodb.net/local_library?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
+
 
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(mongoDb);
+  await mongoose.connect(mongoDB);
 }
+
+// Compress all routes.
+app.use(compression());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
