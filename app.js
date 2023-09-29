@@ -9,8 +9,17 @@ const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog'); // Import routes for "catalog" area of site.
 const compression = require('compression');
 const helmet = require('helmet');
+const RateLimit = require('express-rate-limit');
 
 const app = express();
+
+// Set up rate limiter: maximum of twenty requests per minute
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 Minute
+  max: 20,
+});
+
+app.use(limiter);
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
