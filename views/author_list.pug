@@ -3,10 +3,10 @@ extends layout
 block content 
   h1= title 
 
-  ul 
+  ul(class='list-group')
     each author in author_list 
         a(class='list-group-item-action list-group-item list-group-item-primary fs-5' href=author.url) #{author.name}
-          span (#{author.date_of_birth_formatted} - #{author.date_of_death_formatted})
+          p(class='pt-1 fs-6') Lifespan (#{author.date_of_birth_formatted} - #{author.date_of_death_formatted})
 
     else 
       li There are no genres.
