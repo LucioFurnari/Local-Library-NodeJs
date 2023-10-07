@@ -10,12 +10,12 @@ html(lang='en')
     script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js", integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r", crossorigin="anonymous")
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/javascripts/script.js' defer)
-  body(class='bg-dark')
+  body
     div(class='container-fluid')
       div(class='row')
         div(class='col-sm-2')
           block sidebar
-            ul(class='sidebar-nav nav nav-pills flex-column bg-dark', id='pills-tab')
+            ul(class='sidebar-nav nav nav-pills flex-column', id='pills-tab')
               li(class='nav-item')
                 a(href='/catalog', class='nav-link') Home
               li(class='nav-item')
