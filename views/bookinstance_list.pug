@@ -2,18 +2,17 @@ extends layout
 
 block content 
   h1= title
-  ul
+  ul(class='list-group')
     each val in bookinstance_list
-      li 
+      li(class='list-group-item-action list-group-item list-group-item-primary fs-5' )
         a(href=val.url) #{val.book.title} : #{val.imprint} -
         if val.status=='Available'
-          span.text-success #{val.status}
+          p.text-success #{val.status}
         else if val.status=='Maintenance'
-          span.text-danger #{val.status}
+          p.text-danger #{val.status}
         else
-          span.text-warning #{val.status}
+          p.text-warning #{val.status}
         if val.status!='Available'
-          span (Due: #{val.due_back_formatted} )
-
+          p (Due: #{val.due_back_formatted} )
         else
-          li There are no book copies in this library.
+          p There are no book copies in this library.
