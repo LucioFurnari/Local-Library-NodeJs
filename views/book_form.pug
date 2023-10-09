@@ -6,7 +6,7 @@ block content
   form(method='POST' action='')
     div(class='form-floating mb-4')
       input#title.form-control(type='text', placeholder='Name of book' name='title' required='true' value=(undefined===book ? '' : book.title) )
-      label(class='fs-5' for='title') Title
+      label(for='title') Title
     div(class='form-floating mb-4')
       select#author.form-select(type='select', placeholder='Select author' name='author' required='true' )
         - authors.sort(function(a, b) {let textA = a.family_name.toUpperCase(); let textB = b.family_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
@@ -17,11 +17,11 @@ block content
             option(value=author._id) #{author.name}
       label(for='author') Author      
     div(class='form-floating mb-4')
-      textarea#summary.form-control(type='textarea', placeholder='Summary' name='summary' required='true') #{undefined===book ? '' : book.summary}
-      label(class='fs-5' for='summary') Summary
+      textarea#summary(class='form-control' style='height: 200px' type='textarea', placeholder='Summary' name='summary' required='true') #{undefined===book ? '' : book.summary}
+      label(for='summary') Summary
     div(class='form-floating mb-4')
       input#isbn.form-control(type='text', placeholder='ISBN13' name='isbn' value=(undefined===book ? '' : book.isbn) required='true')
-      label(class='fs-5' for='isbn') ISBN
+      label(for='isbn') ISBN
     div(class='form-floating mb-4')
       div
         for genre in genres
