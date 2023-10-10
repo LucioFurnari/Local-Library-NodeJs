@@ -48,27 +48,11 @@ AuthorSchema.virtual('lifespan').get(function () {
 })
 
 AuthorSchema.virtual('input_format_birth_date').get(function () {
-  const year = DateTime.fromJSDate(this.date_of_birth).year
-  const month = DateTime.fromJSDate(this.date_of_birth).month > 10 ?  DateTime.fromJSDate(this.date_of_birth).day : '0' + DateTime.fromJSDate(this.date_of_birth).day
-  let day = DateTime.fromJSDate(this.date_of_birth).day > 10 ?  DateTime.fromJSDate(this.date_of_birth).day : '0' + DateTime.fromJSDate(this.date_of_birth).day
-
-  const reverseDate = []
-  reverseDate.push(year, month, day);
-  const newDate = reverseDate.join('-')
-
-  return newDate
+  return DateTime.fromJSDate(this.date_of_birth).toISODate();
 })
 
 AuthorSchema.virtual('input_format_death_date').get(function () {
-  const year = DateTime.fromJSDate(this.date_of_death).year;
-  const month = DateTime.fromJSDate(this.date_of_death).month > 10 ?  DateTime.fromJSDate(this.date_of_death).month : '0' + DateTime.fromJSDate(this.date_of_death).month;
-  let day = DateTime.fromJSDate(this.date_of_death).day > 10 ?  DateTime.fromJSDate(this.date_of_death).day : '0' + DateTime.fromJSDate(this.date_of_death).day;
-
-  const reverseDate = []
-  reverseDate.push(year, month, day);
-  const newDate = reverseDate.join('-')
-
-  return newDate
+  return DateTime.fromJSDate(this.date_of_death).toISODate();
 })
 
 // Export model
